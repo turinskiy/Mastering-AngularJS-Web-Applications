@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Area With Limit Ctrl</title>
+    <meta charset="utf-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script>
+        angular.module('myApp', [])
+            .controller('TextAreaWithLimitCtrl', function ($scope) {
+                const MAX_LEN = 70;
+                const WARN_THRESHOLD = 65;
+                $scope.message = '';
+
+                $scope.remaining = function () {
+                    return MAX_LEN - $scope.message.length;
+                };
+                $scope.shouldWarn = function () {
+                    return $scope.remaining() < WARN_THRESHOLD;
+                };
+            });
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body ng-app="myApp">
+<div class="container" ng-controller="TextAreaWithLimitCtrl">
+    <div class="row">
+        <span ng-class="{'text-warning' : shouldWarn()}">Remaining: {{remaining()}}</span>
+        <textarea ng-model="message">{{message}}</textarea>
+    </div>
+    <div class="row">
+        <button ng-disabled="!hasValidLength()" ng-click="send()">Send</button>
+        <button ng-click="clear()">Clear</button>
+    </div>
+
+    <!-- Bootstrap and others -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>
+
+
+
+
