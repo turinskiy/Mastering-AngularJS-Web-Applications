@@ -21,3 +21,19 @@ tightly integrated with the build system.
 templates like LESS).
 + Files need to be merged together and minibed to optimize  
 in-browser performance.
+
+### Tools:
+Grunt, Jasmine + Karma
+_______________
+
+### Folder structure
+1. `src` It contains application's source code
+    1. `app`
+    2. `assets`
+    3. `common`
+    4. `less`
+    5. _index.html_
+2. `test` It contains accompanying automated tests
+3. `vendor` It contains third party dependencies
+4. `build` It contains build scripts
+5. `dist` It contains build results, ready to be deployed in a target environment
